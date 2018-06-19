@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +22,18 @@ namespace keenAngular.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+			services.AddCors(o=> o.AddPolicy("keenPolicy", builder =>
+			{
+				builder.AllowAnyOrigin()
+					.AllowAnyMethod()
+					.AllowAnyHeader();
+			}));
+
+			services.Configure<MvcOptions>(options =>
+			{
+				options.Filters.Add(new CorsAuthorizationFilterFactory("AllowSpecificOrigin"));
+			});
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // In production, the Angular files will be served from this directory
@@ -61,8 +75,9 @@ namespace keenAngular.Web
                 spa.Options.SourcePath = "ClientApp";
 
                 if (env.IsDevelopment())
-                {
-                    spa.UseAngularCliServer(npmScript: "start");
+			  {
+				  spa.Options.StartupTimeout = new System.TimeSpan(0, 0, 120);
+				  spa.UseAngularCliServer(npmScript: "start");
                 }
             });
         }

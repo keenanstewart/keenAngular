@@ -1,0 +1,40 @@
+<h1>WordSmith Words</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<p *ngIf="!words"><em>Loading...</em></p>
+
+<table class="table" *ngIf="words">
+    <thead>
+        <tr>
+            <th><P>ID</th>
+            <th>WordSmithThemeID</th>
+            <th>DailyWord</th>
+            <th>Pronunciation</th>
+            <th>Meaning</th>
+            <th>Etymology</th>
+            <th>Usage</th>
+            <th>Thought A Day</th>
+            <th>Notes</th>
+            <th>Input Date</th>
+            <th>Update Date</th>
+            <th>Reviewed</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let word of words">
+            <td>{{ word.id }}</td>
+            <td>{{ word.wordThemeID }}</td>
+            <td>{{ word.dailyWord }}</td>
+            <td>{{ word.pronunciation }}</td>
+            <td>{{ word.meaning | truncate : 20 }}</td>
+            <td>{{ word.etymology | truncate : 20 }}</td>
+            <td>{{ word.usage | truncate : 20 }}</td>
+            <td>{{ word.thoughtADay | truncate : 20 }}</td>
+            <td>{{ word.notes | truncate : 20 }}</td>
+            <td>{{ word.inputDate }}</td>
+            <td>{{ word.updateDate }}</td>
+            <td>{{ word.reviewed }}</td>
+        </tr>
+    </tbody>
+</table>
