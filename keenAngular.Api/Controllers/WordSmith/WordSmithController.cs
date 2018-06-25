@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 
 using keenAngular.Api.Models.WordSmith;
+using Microsoft.AspNetCore.Cors;
 
 namespace keenAngular.Api.Controllers.WordSmith
 {
@@ -125,6 +126,7 @@ namespace keenAngular.Api.Controllers.WordSmith
 		};
 
 		[HttpGet]
+		[EnableCors("*")]
 		public IList<WordSmithWords> GetAllWords()
 		{
 			return words;

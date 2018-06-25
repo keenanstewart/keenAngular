@@ -32,6 +32,11 @@
                         <span class='glyphicon glyphicon-th-list'></span> Word Smith
                     </a>
                 </li>
+                <li [routerLinkActive]='["link-active"]'>
+                    <a [routerLink]='["/word-smith-database"]' (click)='collapse()'>
+                        <span class='glyphicon glyphicon-th-list'></span> Word Smith Database
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

@@ -10,6 +10,7 @@ import { HomeComponent } from "./home/home.component";
 import { CounterComponent } from "./counter/counter.component";
 import { FetchDataComponent } from "./fetch-data/fetch-data.component";
 import { WordSmithComponent } from "./word-smith/word-smith.component";
+import { WordSmithWordsComponent } from "./word-smith-database/word-smith-database.component";
 import { TruncatePipe } from "./pipes/truncate.pipe";
 
 @NgModule({
@@ -20,6 +21,7 @@ import { TruncatePipe } from "./pipes/truncate.pipe";
         CounterComponent,
         FetchDataComponent,
         WordSmithComponent,
+        WordSmithWordsComponent,
         TruncatePipe,
     ],
     imports: [
@@ -30,7 +32,8 @@ import { TruncatePipe } from "./pipes/truncate.pipe";
             { path: "", component: HomeComponent, pathMatch: "full" },
             { path: "counter", component: CounterComponent },
             { path: "fetch-data", component: FetchDataComponent },
-            { path: "word-smith", component: WordSmithComponent },
+            { path: "word-smith",component: WordSmithComponent },
+            { path: "word-smith-database",component: WordSmithWordsComponent },
         ])
     ],
     providers: [],
